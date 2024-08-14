@@ -1,5 +1,8 @@
 <?php
 
+use App\Events\AddedNewCustomer;
+use App\Events\Example;
+use App\Events\PackageSent;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -14,4 +17,8 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+});
+
+Route::get('/broadcast', function () {
+    broadcast(new PackageSent('Peter', 'Test', '00.00.00'));
 });
